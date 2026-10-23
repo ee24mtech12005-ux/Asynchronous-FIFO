@@ -1,0 +1,40 @@
+VCD info: dumpfile results/odd_ratio.vcd opened for output.
+==============================================================
+ Async FIFO test  [odd_ratio]  DEPTH=16 WIDTH=8  wclk=7000 ps  rclk=13000 ps
+==============================================================
+TEST 1: reset behaviour
+  [PASS] empty asserted after reset
+  [PASS] full de-asserted after reset
+TEST 2: fill FIFO completely, then try to overflow
+  [PASS] exactly DEPTH writes accepted
+  [PASS] full flag stays high
+  [PASS] overflow attempts were generated and blocked
+TEST 3: drain FIFO completely, then try to underflow
+  [PASS] exactly DEPTH reads accepted
+  [PASS] all data read in FIFO order, no mismatch
+  [PASS] underflow attempts were generated and blocked
+  [PASS] full cleared after draining
+TEST 4: random traffic, balanced (w=60%, r=60%), 2000 writes
+  [PASS] all written words were read
+TEST 5: write-heavy traffic (w=95%, r=25%), 2000 writes
+  [PASS] all written words were read
+TEST 6: read-heavy traffic (w=25%, r=95%), 2000 writes
+  [PASS] all written words were read
+TEST 7: continuous simultaneous read/write (100%/100%), 2000 writes
+  [PASS] all written words were read
+TEST 8: reset in the middle of traffic
+  [PASS] FIFO is empty again after mid-traffic reset
+  [PASS] data integrity after reset
+--------------------------------------------------------------
+ SUMMARY [odd_ratio]
+   total words written      : 8220
+   total words read         : 8220
+   data mismatches/errors   : 0
+   max occupancy observed   : 16 / 16
+   full events              : 4857
+   empty events             : 929
+   blocked overflow tries   : 15804
+   blocked underflow tries  : 2239
+ RESULT [odd_ratio]: *** PASS ***
+--------------------------------------------------------------
+tb/tb_async_fifo.v:221: $finish called at 236970500 (1ps)

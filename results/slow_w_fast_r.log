@@ -1,0 +1,40 @@
+VCD info: dumpfile results/slow_w_fast_r.vcd opened for output.
+==============================================================
+ Async FIFO test  [slow_w_fast_r]  DEPTH=16 WIDTH=8  wclk=25000 ps  rclk=10000 ps
+==============================================================
+TEST 1: reset behaviour
+  [PASS] empty asserted after reset
+  [PASS] full de-asserted after reset
+TEST 2: fill FIFO completely, then try to overflow
+  [PASS] exactly DEPTH writes accepted
+  [PASS] full flag stays high
+  [PASS] overflow attempts were generated and blocked
+TEST 3: drain FIFO completely, then try to underflow
+  [PASS] exactly DEPTH reads accepted
+  [PASS] all data read in FIFO order, no mismatch
+  [PASS] underflow attempts were generated and blocked
+  [PASS] full cleared after draining
+TEST 4: random traffic, balanced (w=60%, r=60%), 2000 writes
+  [PASS] all written words were read
+TEST 5: write-heavy traffic (w=95%, r=25%), 2000 writes
+  [PASS] all written words were read
+TEST 6: read-heavy traffic (w=25%, r=95%), 2000 writes
+  [PASS] all written words were read
+TEST 7: continuous simultaneous read/write (100%/100%), 2000 writes
+  [PASS] all written words were read
+TEST 8: reset in the middle of traffic
+  [PASS] FIFO is empty again after mid-traffic reset
+  [PASS] data integrity after reset
+--------------------------------------------------------------
+ SUMMARY [slow_w_fast_r]
+   total words written      : 8222
+   total words read         : 8222
+   data mismatches/errors   : 0
+   max occupancy observed   : 16 / 16
+   full events              : 568
+   empty events             : 5754
+   blocked overflow tries   : 1066
+   blocked underflow tries  : 23579
+ RESULT [slow_w_fast_r]: *** PASS ***
+--------------------------------------------------------------
+tb/tb_async_fifo.v:221: $finish called at 426095000 (1ps)
