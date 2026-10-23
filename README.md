@@ -46,10 +46,10 @@ Cummings "Simulation and Synthesis Techniques for Asynchronous FIFO Design" appr
 ## How to run
 
 ```bash
-sudo apt install iverilog        # or install Icarus Verilog on Windows / use MSYS2
-./run_sim.sh                     # runs everything, logs in results/
-python3 plot_results.py          # optional: regenerate plots (needs matplotlib)
-gtkwave results/fast_w_slow_r.vcd   # optional: view waveforms
+sudo apt install iverilog       
+./run_sim.sh                    
+python3 plot_results.py         
+gtkwave results/fast_w_slow_r.vcd  
 ```
 
 ## Tests (all in `tb/tb_async_fifo.v`)
